@@ -1,0 +1,17 @@
+{
+  "name": "info.androidabcd.plugins.custom",
+  "version": "1.0.0",
+  "description": "Demo plugin to sum two numbers",
+  "cordova": {
+    "id": "info.androidabcd.plugins.custom",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "Ajay",
+  "license": "ISC"
+}
