@@ -1,8 +1,6 @@
 package info.androidabcd.plugins.custom;
-
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,8 +12,20 @@ public class CordovaCustomPlugin extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+        //callbackContext.success("Executed");
         if (action.equals("coolMethod")) {
            int arg1 = args.getInt(0);
+            int arg2 = args.getInt(1);
+            int result = arg1+arg2;
+            callbackContext.success("Sum is -- "+result);
+            return true;
+        }
+        
+         if (action.equals("SelectFile")) {
+            //     this.SelectFile(callbackContext);
+            //   callbackContext.success("Sum is -- "+"Here");
+            // return true;
+            int arg1 = args.getInt(0);
             int arg2 = args.getInt(1);
             int result = arg1+arg2;
             callbackContext.success("Sum is -- "+result);
@@ -29,6 +39,18 @@ public class CordovaCustomPlugin extends CordovaPlugin {
             callbackContext.success(message);
         } else {
             callbackContext.error("Expected one non-empty string argument.");
+        }
+    }
+
+    private void SelectFile(String message, CallbackContext callbackContext) {
+        try{
+            Intent chooseFile = new Intent(Intent.ACTION_GET_CONTENT);
+        chooseFile.setType("*/*");
+        chooseFile = Intent.createChooser(chooseFile, "Choose a file");
+        startActivityForResult(chooseFile, 101);
+          callbackContext.success("Called");
+        }catch(){
+        callbackContext.success("Error");
         }
     }
 }
